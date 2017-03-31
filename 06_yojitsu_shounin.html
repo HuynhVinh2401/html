@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>組織内予実承認</title>
+
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/ng-file-upload-shim.js"></script>
+		<script src="./js/ng-file-upload.js"></script>
+		<script src="./js/ng-csv.js"></script>
+		<script src="./js/angular-sanitize.min.js"></script>
+		<script src="./js/app.js" style=""></script>
+	</head>
+	<body>
+		<header>
+			<div class="page-top clearfix">
+				<p class="username">ログイン名：test@svc.co.jp</p>
+				<p class="username">会社名：株式会社ソフトビジョン</p>
+				<div id="headerMenu" class="nav-pills menu">
+				</div>
+			</div>
+		</header>
+		<main>
+			<div ng-app="myApp" ng-controller="06_controller" class="body06-content container">
+				<h3>組織内 予実承認</h3>
+				<div class="horizontal-scroll col-sm-12">
+					<div>
+						<div class="left-fit"><label>組織名：システム開発部4課</label></div>
+
+						<div class="right-fit">
+							<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="prvMonth()">
+							<span class="ng-scope"><b><</b></span>
+							</a>
+							<label>{{currentYearMonth}}</label>
+							<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="nxtMonth()">
+								<span class="ng-scope"><b>></b></span>
+							</a>
+						</div>
+						
+					</div>
+					<div class="left-fit-haft">
+						<label>対象者：</label>
+						<select ng-model="x.username" ng-options="u.value as u.text for u in userNameLst"></select>
+					</div>
+
+					<table id="06_table" class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th class="textCenter">日付</th>
+								<th class="textCenter"></th>
+								<th class="textCenter">予定時刻</th>
+								<th class="textCenter">予定理由等</th>
+								<th class="textCenter">残業予想時間</th>
+								<th class="textCenter">予定承認</th>
+								<th class="textCenter">実績時刻</th>
+								<th class="textCenter">実績理由等</th>
+								<th class="textCenter">残業実績時間</th>
+								<th class="textCenter">実績承認</th>
+							</tr>
+						</thead>
+						<tbody ng-repeat="x in smartTableData" ng-init="">
+							
+							<tr>
+								<td class="nowrap" rowspan="2" ng-style="set_color(x)">{{ x.day }}</td>
+								<td>出社</td>
+								<td>09:00</td>
+								<td></td>
+								<td rowspan="2"></td>
+								<td rowspan="2" class="button-inside-table">
+									<button type="button" class="btn btn-default" ng-click="register = true" ng-hide="register" id="btnRegister">承認</button>
+									<div ng-show="register"><span id="registered">承認済</span></div>
+								</td>
+								<td></td>
+								<td></td>
+								<td rowspan="2"></td>
+								<td rowspan="2" class="button-inside-table">
+									<button type="button" class="btn btn-default" ng-click="register1 = true" ng-hide="register1" id="btnRegister">承認</button>
+									<span id="registered" ng-show="register1">承認済</span>
+								</td>
+							</tr>
+							<tr>
+								<td>退社</td>
+								<td>20:00</td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							
+						</tbody>
+					</table>
+					
+					<button type="button" class="btn btn-default btns-float-mid" ng-click="register = true">一括承認</button>
+					<button type="button" class="btn btn-default btns-float-right" ng-click="register1 = true">一括承認</button>
+				</div>
+			</div>
+			
+		</main>
+		<footer id="footer">
+		</footer>
+	</body>
+</html>

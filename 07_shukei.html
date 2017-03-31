@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:3000/login -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>組織内集計画面</title>
+		
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/ng-file-upload-shim.js"></script>
+		<script src="./js/ng-file-upload.js"></script>
+		<script src="./js/ng-csv.js"></script>
+		<script src="./js/angular-sanitize.min.js"></script>
+		<script src="./js/app.js" style=""></script>
+	</head>
+	<body>
+		<header>
+			<div class="page-top clearfix">
+				<p class="username">ログイン名：test@svc.co.jp</p>
+				<p class="username">会社名：株式会社ソフトビジョン</p>
+				<div id="headerMenu" class="nav-pills menu">
+				</div>
+			</div>
+		</header>
+		<main>
+			
+			<div ng-app="myApp" ng-controller="07_controller" class="container">
+				<h3>組織内 月次集計</h3>
+				<div class="horizontal-scroll col-sm-12">
+					<div class="left-fit">
+						<label>組織名：システム開発部4</label>
+					</div>
+					<div class="right-fit">
+						<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="prvMonth()">
+							<span class="ng-scope"><b><</b></span>
+						</a>
+						<label class="textCenter w85">{{currentYearMonth}}</label>
+						<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="nxtMonth()">
+							<span class="ng-scope"><b>></b></span>
+						</a>
+					</div>
+					<table id="07_table" class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								<th rowspan="2" class="textCenter verticalalignMid">氏名</th>
+								<th colspan="3" class="textCenter verticalalignMid">就業</th>
+								<th rowspan="2" class="verticalalignMid">遅刻</th>
+								<th rowspan="2" class="verticalalignMid">早退</th>
+								<th rowspan="2" class="verticalalignMid">欠勤</th>
+								<th rowspan="2" class="verticalalignMid">度弔</th>
+								<th rowspan="2" class="verticalalignMid">有休</th>
+								<th rowspan="2" class="verticalalignMid">代休</th>
+								<th rowspan="2" class="verticalalignMid">その他</th>
+								<th rowspan="2" class="verticalalignMid">未入力</th>
+							</tr>
+							<tr>
+								<th class="textCenter">合計</th>
+								<th class="textCenter">残業</th>
+								<th class="textCenter">休出</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in dataTableShukei">
+								<td class="textCenter">
+									<span>{{ x.name }}</span>
+								</td>
+								<td class="textCenter">
+									<span>{{ x.total }}</span><br>
+									<span>{{ x.totalTime }}</span>
+								</td>
+								<td class="textCenter">
+									<span>{{ x.overtime }}</span><br>
+									<span>{{ x.overtime1 }}</span>
+								</td>
+								<td class="textCenter">
+									<span>{{ x.break }}</span><br>
+									<span>{{ x.break1 }}</span>
+								</td>
+								<td class="textRight">{{ x.late }}</td>
+								<td class="textRight">{{ x.leaveEarly }}</td>
+								<td class="textRight">{{ x.absence }}</td>
+								<td class="textRight">{{ x.manypeople }}</td>
+								<td class="textRight">{{ x.holiday }}</td>
+								<td class="textRight">{{ x.substituteHoliday }}</td>
+								<td class="textRight">{{ x.other }}</td>
+								<td class="textRight">{{ x.notyetEntered }}</td>
+							</tr>
+						</tbody>
+					</table>
+
+						<!--
+					    <div class="col-md-8">
+					       	<div class="btn-group btn-group-justified">
+					        	<div class="btn-group">
+					         		<button type="button" class="btn btn-default">月次集計ダウンロード</button>
+					        	</div>
+					       		<div class="btn-group">
+					         		<button type="button" class="btn btn-default btns-same-width-md">月次明細ダウンロード</button>
+					        	</div>
+					       	</div>
+					    </div>
+					    -->
+
+				      	<button type="button" class="btn btn-default btns-same-width-md" ng-csv="dataTableShukei" filename="070_test.csv" field-separator="," decimal-separator=".">月次集計ダウンロード</button>
+           				<button type="button" class="btn btn-default btns-same-width-md" ng-csv="metricsTableData" filename="071_test.csv" field-separator="," decimal-separator=".">月次明細ダウンロード</button>
+				</div>
+			</div>
+		</main>
+		<footer id="footer">
+		</footer>
+	</body>
+</html>

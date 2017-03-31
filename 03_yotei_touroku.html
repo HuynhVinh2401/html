@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:3000/login -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>予定登録画面</title>
+		
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/ng-file-upload-shim.js"></script>
+		<script src="./js/ng-file-upload.js"></script>
+		<script src="./js/ng-csv.js"></script>
+		<script src="./js/angular-sanitize.min.js"></script>
+		<script src="./js/app.js" style=""></script>
+		
+	</head>
+	<body>
+		<header>
+			<div class="page-top clearfix">
+				<p class="username">ログイン名：test@svc.co.jp</p>
+				<p class="username">会社名：株式会社ソフトビジョン</p>
+				<div id="headerMenu" class="nav-pills menu">
+				</div>
+			</div>
+		</header>
+		<main>
+			<div ng-app="myApp" ng-controller="03_controller" class="container">
+				<h3>勤務予定登録</h3>
+				
+					<div class="horizontal-scroll col-md-12">
+						<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="prvMonth()">
+							<span class="ng-scope"><b><</b></span>
+						</a>
+						<label>{{currentYearMonth}}</label>
+						<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="nxtMonth()">
+							<span class="ng-scope"><b>></b></span>
+						</a>
+						<table id="03_table" class="table table-bordered table-hover table-striped">
+							<thead>
+								<tr>
+									<th style="width:15%;">日付</th>
+									<th>出社予定時刻</th>
+									<th>退社予定時刻</th>
+									<th>残業予想時間</th>
+									<th>理由等</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in smartTableData">
+									<td style="white-space:nowrap;" ng-style="set_color(x)">{{ x.day }}</td>
+									<td style="white-space:nowrap;">
+										<select ng-model="x.comeTime.hour" ng-options="h.text for h in hourLst track by h.value" ng-change="test()">
+										</select>
+										<select ng-model="x.comeTime.minute" ng-options="m.text for m in minuteLst track by m.text"></select>
+									</td>
+									<td style="white-space:nowrap;">
+										<select ng-model="x.gohome.hour" ng-options="h.text for h in hourLst track by h.value"></select>
+										<select ng-model="x.gohome.minute" ng-options="m.text for m in minuteLst track by m.value"></select>
+									</td>
+									<td class="textCenter">
+										<span>{{ x.estOtTime }}</span>
+									</td>
+									<td>
+										<input class="col-sm-12" type="text" name="userName" ng-model="x.reason" required>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<button type="submit" class="btn btn-default button-custom" ng-csv="smartTableData" filename="test.csv" field-separator="," decimal-separator=".">CSVダウンロード</button>
+						
+						<button type="file" class="btn btn-default button-custom" ngf-select="uploadFiles($file, $invalidFiles)" accept=".csv" ngf-max-height="1000" ngf-max-size="1MB">CSVアップロード</button>
+						<button type="button" class="btn btn-default btns-float-right-in-md">登録</button>
+						
+					</div>
+				
+			</div>
+		</main>
+		<footer id="footer">
+		</footer>
+	</body>
+</html>

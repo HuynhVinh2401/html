@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:3000/login -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ユーザ登録画面(一覧)</title>
+		
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/ng-file-upload-shim.js"></script>
+		<script src="./js/ng-file-upload.js"></script>
+		<script src="./js/ng-csv.js"></script>
+		<script src="./js/angular-sanitize.min.js"></script>
+		<script src="./js/app.js" style=""></script>
+	</head>
+	<body>
+		<header>
+			<div class="page-top clearfix">
+				<p class="username">ログイン名：test@svc.co.jp</p>
+				<p class="username">会社名：株式会社ソフトビジョン</p>
+				<div id="headerMenu" class="nav-pills menu">
+				</div>
+			</div>
+		</header>
+		<main>			
+			<div ng-app="myApp" ng-controller="10_controller" class="container">
+				<h3>ユーザ登録</h3>
+				<div class="horizontal-scroll col-md-12">
+					<div class="right-fit" style="margin: auto;">
+							<a data-toggle="modal" data-target="#modal-empty"  href="#" class="fontSize20">新規登録</a>
+					</div>
+					<div class="paddingtop30">
+						<div class="modal fade" id="modal-empty" tabindex="-1" role="dialog" aria-labelledby="executionOptionLabel" aria-hidden="true" >
+							<div class="modal-dialog w650 marginAuto">
+								<div class="modal-content modalDialog15">
+									<div class="modal-body">
+										<table class="mar4em">
+											<tr>
+												<td class="textRight">社員番号：</td>
+												<td class="paddingLeft5em"><input type="text" name="" value="" class="form-control w100"></td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">社員氏名：</td>
+												<td class="paddingLeft5em">
+													<input type="text" name="" value="" class="form-control w150">
+												</td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">ふりがな：</td>
+												<td class="paddingLeft5em">
+													<input type="text" name="" value="" class="form-control w180">
+												</td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">所属組織：</td>
+												<td class="paddingLeft5em whiteSpace">
+													<select class="form-control w200" ng-model="x.username" ng-options="u.value as u.text for u in userNameLst"></select>
+												</td>
+												<td class="padding1em"></td>
+											</tr>
+											
+											<tr>
+												<td class="textRight">性別：</td>
+												<td class="paddingLeft5em whiteSpace">
+													<select ng-model="x.sex" ng-options="u.value as u.text for u in sexLst" class="form-control w100"></select>
+												</td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">権限：</td>
+												<td class="paddingLeft5em textLeft w400 paddingTop10">
+													<input type="checkbox" name="" value="" id="checkbox1">
+													<label for="checkbox1">一般 </span>
+													<input type="checkbox" name="" value="" id="checkbox4">
+													<label for="checkbox4">拠点管理者</label>
+													<input type="checkbox" name="" value="" id="checkbox2">
+													<label for="checkbox2">組織管理者</label>
+													<input type="checkbox" name="" value="" id="checkbox3">
+													<label for="checkbox3">システム管理者</label>
+												</td>
+												<td class="padding5"></td>
+											</tr>
+											<tr>
+												<td class="textRight w150">メールアドレス：</td>
+												<td class="paddingLeft5em"><input type="text" name="" value="" class="form-control w280"></td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">拠点：</td>
+												<td class="paddingLeft5em whiteSpace">
+													<select ng-model="x.compliance" ng-options="u.value as u.text for u in complianceLst" class="form-control w280"></select>
+												</td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">勤務体系：</td>
+												<td class="paddingLeft5em whiteSpace paddinTop5">
+													<select ng-model="x.workSchedule" ng-options="u.value as u.text for u in workScheduleLst" class="form-control w280"></select>
+												</td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">入社日：</td>
+												<td class="paddingLeft5em"><input type="text" name="" value="" class="form-control w280"></td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">退職日：</td>
+												<td class="paddingLeft5em"><input type="text" name="" value="" class="form-control w280"></td>
+												<td class="padding1em"></td>
+											</tr>
+											<tr>
+												<td class="textRight">画像：</td>
+												<td colspan="2" class="paddingLeft5em">
+													<a href="#" ngf-select="uploadImage($file, $invalidFiles)" ngf-max-height="1000" ngf-max-size="1MB">ファイルをアップロード</a>
+													<span ng-repeat="data in imageUpload" class="paddingLeft5em">
+														<img ng-src="{{ data.icon }}" width="30" height="30" src="{{ data.icon }}">
+													</span>
+												</td>
+											</tr>
+											<tr>
+												<td colspan="3" class="padding6em padLeft43Persen">
+													<button class="btn btn-default" data-toggle="confirmation" data-dismiss="modal" aria-label="Close">ＯＫ</button>
+													<button class="btn btn-default" data-toggle="confirmation" data-dismiss="modal" aria-label="Close">キャンセル</button>
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							<table id="10_table" class="table table-bordered table-hover table-striped tableBlock">
+								<thead class="theadTable">
+									<tr>
+										<th>社員番号</th>
+										<th>氏名</th>
+										<th>所属組織</th>
+										<th>拠点</th>
+										<th>権限</th>
+										<th>退職</th>
+									</tr>
+								</thead>
+								<tbody class="tbodyTable">
+									<tr ng-repeat="data in smartTableData">
+										<td class="textLeft tdWidthPersen5">{{ data.no }}</td>
+										<td class="textLeft tdWidthPersen10">
+											<a href="#" data-toggle="modal" data-target="#{{'modal-' + $index }}">{{ data.name }}</a>
+											<div class="modal fade" id="{{'modal-' + $index }}" tabindex="-1" role="dialog" aria-labelledby="executionOptionLabel" aria-hidden="true" >
+												<div class="modal-dialog w650 marginAuto">
+													<div class="modal-content modalDialog15">
+														<div class="modal-body">
+															<table class="mar4em">
+																<tr>
+																	<td class="textRight">社員番号：</td>
+																	<td class="paddingLeft5em"><input type="text" name="" value="{{data.no}}" class="form-control w100"></td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">社員氏名：</td>
+																	<td class="paddingLeft5em">
+																		<input type="text" name="" value="{{ data.name }}" class="form-control w150">
+																	</td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">ふりがな：</td>
+																	<td class="paddingLeft5em">
+																		<input type="text" name="" value="さとう としゆき" class="form-control w180">
+																	</td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">所属組織：</td>
+																	<td class="paddingLeft5em whiteSpace">
+																		<select ng-init="x.username = userNameLst[$index].value" ng-model="x.username" ng-options="u.value as u.text for u in userNameLst" class="form-control w200"></select>
+																	</td>
+																	<td class="padding1em"></td>
+																</tr>
+																
+																<tr>
+																	<td class="textRight">性別：</td>
+																	<td class="paddingLeft5em whiteSpace paddinTop5">
+																		<select ng-init="x.sex = sexLst[0].value" ng-model="x.sex" ng-options="u.value as u.text for u in sexLst" class="form-control w100"></select>
+																	</td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">権限：</td>
+																	<td class="paddingLeft5em textLeft w400-1 paddingTop10">
+																		<input type="checkbox" name="" value="一般" id="{{'checkbox1-' + $index }}">
+																		<label for="{{'checkbox1-' + $index }}">一般 </span>
+																		<input type="checkbox" name="" value="拠点管理者" id="{{'checkbox4-' + $index }}">
+																		<label for="{{'checkbox4-' + $index }}">拠点管理者</label>
+																		<input type="checkbox" name="" value="組織管理者" id="{{'checkbox2-' + $index }}">
+																		<label for="{{'checkbox2-' + $index }}">組織管理者</label>
+																		<input type="checkbox" name="" value="システム管理者" id="{{'checkbox3-' + $index }}">
+																		<label for="{{'checkbox3-' + $index }}">システム管理者</label>
+																	</td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight wi150">メールアドレス：</td>
+																	<td class="paddingLeft5em"><input type="text" name="" value="toshiyuki.sato@svc.co.jp" class="form-control w280"></td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">拠点：</td>
+																	<td class="paddingLeft5em whiteSpace paddinTop5">
+																		<select ng-init="x.compliance = complianceLst[$index].value" ng-model="x.compliance" ng-options="u.value as u.text for u in complianceLst" class="form-control w280"></select>
+																	</td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">勤務体系：</td>
+																	<td class="paddingLeft5em whiteSpace paddinTop5">
+																		<select ng-init="x.workSchedule = workScheduleLst[0].value" ng-model="x.workSchedule" ng-options="u.value as u.text for u in workScheduleLst" class="form-control w280"></select>
+																	</td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">入社日：</td>
+																	<td class="paddingLeft5em"><input type="text" name="" value="2008/10/1" class="form-control w280"></td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">退職日：</td>
+																	<td class="paddingLeft5em"><input type="text" name="" value="" class="form-control w280"></td>
+																	<td class="padding1em"></td>
+																</tr>
+																<tr>
+																	<td class="textRight">画像：</td>
+																	<td colspan="2" class="paddingLeft5em">
+																		<a href="#" ngf-select="uploadImage($file, $invalidFiles)" ngf-max-height="1000" ngf-max-size="1MB">ファイルをアップロード</a>
+																		<span ng-repeat="data in imageUpload" class="paddingLeft5em">
+																			<img ng-src="{{ data.icon }}" width="30" height="30" src="{{ data.icon }}">
+																		</span>
+																	</td>
+																</tr>
+																
+																<tr>
+																	<td colspan="3" class="padding6em padLeft43Persen">
+																		<button class="btn btn-default" data-toggle="confirmation" data-dismiss="modal" aria-label="Close">ＯＫ</button>
+																		<button class="btn btn-default" data-toggle="confirmation" data-dismiss="modal" aria-label="Close">キャンセル</button>
+																	</td>
+																</tr>
+															</table>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
+										<td class="textLeft tdWidthPersen10">{{ data.division }}</td>
+										<td class="textLeft tdWidthPersen10">{{ data.place }}</td>
+										<td class="textLeft tdWidthPersen5">{{ data.author }}</td>
+										<td class="textCenter tdWidthPersen5">{{ data.retired }}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<button type="submit" class="btn btn-default button-custom" ng-csv="smartTableData" filename="test.csv" field-separator="," decimal-separator=".">CSVダウンロード</button>
+						<button type="file" class="btn btn-default button-custom" ngf-select="uploadFiles($file, $invalidFiles)" accept=".csv" ngf-max-height="1000" ngf-max-size="1MB">CSVアップロード</button>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer id="footer">
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>一般利用者打刻画面</title>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/ng-file-upload-shim.js"></script>
+		<script src="./js/ng-file-upload.js"></script>
+		<script src="./js/ng-csv.js"></script>
+		<script src="./js/angular-sanitize.min.js"></script>
+		<script src="./js/app.js" style=""></script>
+	</head>
+	<body>
+		<header>
+			<div class="page-top clearfix">
+				<p class="username">ログイン名：test@svc.co.jp</p>
+				<p class="username">会社名：株式会社ソフトビジョン</p>
+				<div id="headerMenu" class="nav-pills menu">
+				</div>
+			</div>
+		</header>
+		<div ng-app="myApp">
+			<div class="widgets padTopLeftRight250">
+				<div class="row">
+					<div class="col-lg-6 col-md-12 posiInitial widthTable1 padding10">
+						<div>
+							<div>
+								<div>
+									<div>
+										<table>
+											<table class="w400">
+												<tbody>
+													<tr>
+														<p class="fontSize30 textCenter marginBottom0 w400">本日の勤務予定</p>
+													</tr>
+												</tbody>
+											</table>
+											<table class="borderTable02 borderTable w400">
+												<tbody>
+													<tr class="h100 fontSize30 textCenter w400">
+														<td>09:00 ～ 19:00</td>
+													</tr>
+												</tbody>
+											</table>
+											<br/>
+											<table class="w400">
+												<tbody>
+													<tr>
+														<p class="fontSize30 textCenter paddingTopBot marginBottom0 w400">現在時刻 <span id="todayString"></span></p>
+													</tr>
+												</tbody>
+											</table>
+											
+											<table class="table-bordered borderTable">
+												<tbody>
+													<tr>
+														<div ng-controller='TimeCtrl'>
+															<p class="w400 borderTable oclocktext" id="oclockTime">{{ clock | date:'HH:mm:ss'}}</p>
+														</div>
+													</tr>
+												</tbody>
+											</table>
+											<div class="heightTopLeftBut heightWidth">
+												<div class="paddingLeft2">
+													<button type="button" class="btn btn-success button01" data-toggle="modal" id="myBtn"><span class="fontSize35">出勤</span></br><span id="timeCome"></span></button>
+													<button type="button" class="btn btn-info button01" data-toggle="modal" id="myBtnLeave"><span class="fontSize35">退勤</span></br><span id="timeLeave"></span></button> 
+													<!-- The Modal -->
+													<div id="myModal" class="modal">
+													  <!-- Modal content -->
+														<div class="modal-content backgroundColor">
+															<div class="paddingTop20">
+																<table>
+																	<span class="href01">現在の気分を選択してください。</span>
+																	
+																	<tr>
+																		<td class="padTopLeftRight">
+																			<input type="radio" name="rad" id="rad1"  value="rad1"/>
+																		</td>
+																		<td class="textCenter paddingRightTop">
+																			<label for="rad1">
+																				<img ng-src="img/sun.png" width="30" height="30" src="img/sun.png">
+																			</label>
+																		</td>
+																
+																		<td class="paddingRightTop">
+																			<input type="radio" name="rad" id="rad2"  value="rad2"/>
+																		</td>
+																		<td class="textCenter paddingRightTop">
+																			<label for="rad2">
+																				<img ng-src="img/cloud.png" width="30" height="30" src="img/cloud.png">
+																			</label>
+																		</td>
+																		
+																		<td class="paddingRightTop">
+																			<input type="radio" name="rad" id="rad3" value="rad3"/>
+																		</td>
+																		<td class="textCenter paddingRightTop">
+																			<label for="rad3">
+																				<img ng-src="img/rain.png" width="30" height="30" src="img/rain.png">
+																			</label>
+																		</td>
+																		<td class="paddingRightTop">
+																			<input type="radio" name="rad" id="rad4" value="rad4"/>	
+																		</td >
+																		<td class="textCenter paddingRightTop">
+																			<label for="rad4">
+																				<img ng-src="img/hard_rain.png" width="30" height="30" src="img/hard_rain.png">
+																			</label>
+																		</td>
+																	</tr>
+																</table>
+															</div>
+															<div class="padTop50">
+																<table>
+																	<span class="href01">予定との差分理由を選択してください。</span><br>												
+																	<tr>
+																		<td class="paddingLeftTop">																
+																			<input type="radio" name="rad_1" id="rad_1" value="rad_1"/>
+																			<label class="" for="rad_1">電車遅延</label>
+																			<input type="radio" name="rad_1" id="rad_2" value="rad_2"/>
+																			<label class="" for="rad_2">体調不良</label>
+																			<input type="radio" name="rad_1" id="rad_3" value="rad_3"/>
+																			<label class="" for="rad_3">私用</label>
+																			<input type="radio" name="rad_1" id="rad_4" value="rad_4"/>
+																			<label class="" for="rad_4">作業計画変更により</label>
+																			<input type="radio" name="rad_1" id="rad_5" value="rad_5"/>
+																			<label class="" for="rad_5">午前休暇</label>
+																			<input type="radio" name="rad_1" id="rad_6"  value="rad_6"/>
+																			<label class="" for="rad_6">午後休暇</label>
+																		</td>	
+																	</tr>
+																</table>
+															</div>
+															<div class="padTopLeft15">
+																<button type="button" class="btn btn-default button-custom btClose w100">決定</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="paddingLeft2">
+													<button type="button" class="btn btn-warning button01 fontSize35" data-toggle="modal" id="btnGoout02">外出</button> 
+													<button type="button" class="btn btn-danger button01 fontSize35" data-toggle="modal" id="btnReturn02">戻り</button> 
+												</div>
+											</div>
+										</table>
+										<!-- <table class="table">    <tr>      <td>出社</td>      <td>09:00</td>    </tr>    <thead>    </thead>    <tbody>    <tr ng-repeat="item in metricsTableData" class="no-top-border">      <td><img ng-src="{{::( item.image | appImage )}}" width="20" height="20"></td>      <td ng-class="nowrap">{{item.browser}}</td>      <td class="align-right">{{item.visits}}</td>      <td class="table-arr"><i ng-class="{'icon-up': item.isVisitsUp, 'icon-down': !item.isVisitsUp }"></i></td>      <td class="align-right">{{item.purchases}}</td>      <td class="table-arr"><i ng-class="{'icon-up': item.isPurchasesUp, 'icon-down': !item.isPurchasesUp }"></i></td>      <td class="align-right">{{item.percent}}</td>      <td class="table-arr"><i ng-class="{'icon-up': item.isPercentUp, 'icon-down': !item.isPercentUp }"></i></td>    </tr>    </tbody>  </table> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-12 posiInitial widthTable2 padding10" ng-controller="02_controller">
+						<div>
+							<div>
+								<div>
+									<div>
+										<div>
+											<div class="left-fit">
+												<span class="fontSize30">今月の実績</span>
+											</div>
+											<div class="right-fit fontSize20">
+												<table>
+													<tr>
+														<td>
+															<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="prvMonth()">
+																<span class="ng-scope marRight"><b><</b></span>
+															</a>
+														</td>
+														<td id="dt3 w130">
+															<span>{{currentYearMonth}}</span>
+														</td>
+														<td>
+															<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="nxtMonth()">
+																<span class="ng-scope marLeft"><b>></b></span>
+															</a>
+														</td>
+													</tr>
+												</table>
+											</div>
+											<table class="table table-bordered table-hover table-striped">
+												<thead>
+													<tr>
+														<th class="textCenter">日付</th>
+														<th class="textCenter">出社時刻</th>
+														<th class="textCenter">出社時気分</th>
+														<th class="textCenter">退社時刻</th>
+														<th class="textCenter">退社時気分</th>
+														<th class="textCenter">残業時間</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="item in metricsTableData">
+													  <td ng-style="set_color(item)">{{item.day}}</td>
+													  <td class="textCenter">{{item.workingTime}}</td>
+													  <td class="textCenter"><img ng-src="{{::( item.imageCome)}}" width="30" height="30"></td>
+													  <td class="textCenter">{{item.timeToLeave}}</td>
+													  <td class="textCenter"><img ng-src="{{::( item.imageLeave)}}" width="30" height="30"></td>
+													  <td class="textCenter">{{item.overtime}}</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="padBot50">
+									<button type="submit" class="btn btn-default button-custom" ng-csv="smartTableData" filename="test.csv" field-separator="," decimal-separator=".">CSVダウンロード</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer id="footer">
+		</footer>
+	</body>
+</html>

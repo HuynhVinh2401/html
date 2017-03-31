@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>組織内予実承認</title>
+
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/ng-file-upload-shim.js"></script>
+		<script src="./js/ng-file-upload.js"></script>
+		<script src="./js/ng-csv.js"></script>
+		<script src="./js/angular-sanitize.min.js"></script>
+		<script src="./js/app.js" style=""></script>
+	</head>
+	<body>
+		<header>
+			<div class="page-top clearfix">
+				<p class="username">ログイン名：test@svc.co.jp</p>
+				<p class="username">会社名：株式会社ソフトビジョン</p>
+				<div id="headerMenu" class="nav-pills menu">
+				</div>
+			</div>
+		</header>
+		<main>
+			<div ng-app="myApp" ng-controller="11_controller" class="body11-content container">
+				<h3>勤務体系登録</h3>
+				<div class="horizontal-scroll col-sm-12">
+					<div>
+						<div class="right-fit">
+							<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="" data-toggle="modal" data-target="#{{'modal-' + '0' }}">
+								<span class="ng-scope">新規登録</span>
+							</a>
+						</div>
+						
+					</div>
+
+					<div class="paddingtop30">
+						<table id="11_table" class="table table-bordered table-hover table-striped tableBlock">
+							<thead class="theadTable">
+								<tr>
+									<th class="width60Percent textCenter">勤務体系名</th>
+									<th class="width20Percent textCenter">勤務時間</th>
+									<th class="width20Percent textCenter">日付変更標準時刻</th>
+								</tr>
+							</thead>
+							<tbody class="tbodyTable">
+								
+									<tr ng-repeat="data in smartTableData">
+										<td class="nowrap tdWidthPercen25">
+											<a href="#" data-toggle="modal" data-target="#{{'modal-' + $index }}">{{ data.department }}</a>
+											<!-- The Modal -->
+											<div id="{{'modal-' + $index }}" class="modal">
+											  	<!-- Modal content -->
+												<div class="modal-content modal-fit modalBgExtend">
+													<div class="paddingTop10">
+
+														<table class="marLeft10">
+															<tr>
+																<td class="textRight w130">勤務体系名<span class="colorRed">(*)</span> :</td>
+																<td class="paddingLeft5"><input class="w430" type="text" name="" value="{{data.department }}" class="form-control"></td>
+															</tr>
+														</table>
+														<hr class="modal-hr">
+
+														<table class="marLeft10">
+															<tr>
+																<td class="textRight w130">勤務時間 :</td>
+																<td class="paddingLeft5 paddingRight5">
+																	<select ng-model="x.comeOffice.hour" ng-options="h.value as h.text for h in hourLst"></select>
+																	<select ng-model="x.comeOffice.minute" ng-options="m.value as m.text for m in minuteLst"></select>
+																</td>
+																<td> 〜 </td>
+																<td class="paddingLeft5 paddingRight5">
+																	<select ng-model="x.goHome.hour" ng-options="h.value as h.text for h in hourLst"></select>
+																	<select ng-model="x.goHome.minute" ng-options="m.value as m.text for m in minuteLst"></select>
+																</td>
+															</tr>
+														</table>
+														<hr class="modal-hr">
+
+														<table class="marLeft10">
+															<tr>
+																<td class="textRight w130">日付変更標準時刻 :</td>
+																<td class="paddingLeft5 paddingRight5">
+																	<select ng-model="x.workingTime.hour" ng-options="h.value as h.text for h in hourLst"></select>
+																	<select ng-model="x.workingTime.minute" ng-options="m.value as m.text for m in minuteLst"></select>
+																</td>
+															</tr>
+														</table>
+														<hr class="modal-hr">
+
+														<table class="marLeft10">
+															<tr>
+																<td class="textRight w130">休憩時間 :</td>
+																<td class="paddingLeft5">勤務時間内で次の就業時間(1)以上就業した場合休憩時間(2)を適用</td>
+															</tr>
+														</table>
+
+														<table class="marLeft140">
+															<tr>
+																<td class="paddingLeft5">(1)就業時間（分）</td>
+																<td class="paddingLeft5"><input class="w130" type="text" name="" value="">
+																</td>
+															</tr>
+															<tr>
+																<td class="paddingLeft5">(2)休憩時間（分）</td>
+																<td class="paddingLeft5"><input class="w130" type="text" name="" value="">
+																</td>
+															</tr>
+														</table>
+
+														<span class="marLeft145 colorLightBlue">※ 休憩時間は0から360の間で入力してください。</span>
+														<hr class="modal-hr marLeft145">
+														
+														<table class="marLeft10">
+															<tr>
+																<td class="textRight w130"></td>
+																<td class="paddingLeft5">勤務時間内で次の就業時間(1)単位に休憩時間(2)を適用</td>
+															</tr>
+														</table>
+														<table class="marLeft140">
+															<tr>
+																<td class="paddingLeft5">(1)就業時間（分）</td>
+																<td class="paddingLeft5"><input class="w130" type="text" name="" value="">
+																</td>
+															</tr>
+															<tr>
+																<td class="paddingLeft5">(2)休憩時間（分）</td>
+																<td class="paddingLeft5"><input class="w130" type="text" name="" value="">
+																</td>
+															</tr>
+														</table>
+														<span class="marLeft145 colorLightBlue">※ 休憩時間は0から360の間で入力してください。</span>
+														<br>
+														<span class="marLeft145 colorLightBlue">※ 休出は勤務時間外として扱われます。</span>
+														<hr class="modal-hr marLeft145">
+
+														<div class="button-bottom-pnl textCenter paddingTop10">
+															<button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">OK</button>
+															<button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close">キャンセル</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</td>
+										<td class="textCenter tdWidthPercen12_5">{{ data.arrangeTime }}</td>
+										<td class="textCenter tdWidthPercen12_5">{{ data.workingTime }}</td>
+									</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer id="footer">
+		</footer>
+	</body>
+</html>

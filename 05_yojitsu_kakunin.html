@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://localhost:3000/login -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>組織内当日予実確認画面</title>
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/ng-file-upload-shim.js"></script>
+		<script src="./js/ng-file-upload.js"></script>
+		<script src="./js/ng-csv.js"></script>
+		<script src="./js/angular-sanitize.min.js"></script>
+		<script src="./js/app.js" style=""></script>
+	</head>
+	
+	<body>
+		<header>
+			<div class="page-top clearfix">
+				<p class="username">ログイン名：test@svc.co.jp</p>
+				<p class="username">会社名：株式会社ソフトビジョン</p>
+				<div id="headerMenu" class="nav-pills menu">
+				</div>
+			</div>
+		</header>
+		<main>
+			<div ng-app="myApp" ng-controller="05_controller" class="container">
+				<h3>組織内当日予実確認</h3>
+			
+				
+				<div class="horizontal-scroll col-md-12">
+
+					<div>
+						<div class="left-fit"><label>組織名：システム開発部4課</label></div>
+							
+						<div class="right-fit">
+							<a href="#" class="md-primary navButton md-button md-ink-ripple marR marRight" ng-click="prvDay()">
+								<span class="ng-scope"><b><</b></span>
+							</a>
+							<label class="w109 textCenter">{{currentYearMonth}}</label>
+							<a href="#" class="md-primary navButton md-button md-ink-ripple" ng-click="nxtDay()">
+								<span class="ng-scope"><b>></b></span>
+							</a>
+						</div>
+				   
+				 	</div>
+
+				 	<div class="paddingtop30">
+				 		<div>
+					 		<table id="05_table" class="table table-bordered table-hover table-striped tableBlock">
+								<thead class="theadTable">
+									<tr>
+										<th class="textCenter">社員番号</th>
+										<th class="textCenter">氏名</th>
+										<th class="textCenter">出勤予定</th>
+										<th class="textCenter">出勤実績</th>
+										<th class="textCenter">出勤時の気分</th>
+										<th class="textCenter">出勤差異理由</th>
+										<th class="textCenter">退勤予定</th>
+										<th class="textCenter">退勤実績</th>
+										<th class="textCenter">退勤時の気分</th>
+										<th class="textCenter">退勤差異理由</th>				
+									</tr>
+								</thead>
+								<tbody class="tbodyTable">
+									<tr>
+										<td class="textLeft tdWidthPersen5">200820</td>
+										<td class="textLeft tdWidthPersen5">佐藤花火</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/sun.png" width="30" height="30" src="img/sun.png"></td>
+										<td class="textLeft tdWidthPersen5">電車遅延のため</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">20:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/rain.png" width="30" height="30" src="img/rain.png"></td>
+										<td class="textLeft tdWidthPersen5">午後半休</td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200821</td>
+										<td class="textLeft tdWidthPersen5">河崎三四郎</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/cloud.png" width="30" height="30" src="img/cloud.png"></td>
+										<td class="textLeft tdWidthPersen5">午前半休</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">21:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/cloud.png" width="30" height="30" src="img/cloud.png"></td>
+										<td class="textLeft tdWidthPersen5">体調不良のため</td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200822</td>
+										<td class="textLeft tdWidthPersen5">相蘓 慶介</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/rain.png" width="30" height="30" src="img/rain.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/cloud.png" width="30" height="30" src="img/cloud.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200823</td>
+										<td class="textLeft tdWidthPersen5">井手窪 まなか</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/hard_rain.png" width="30" height="30" src="img/hard_rain.png"></td>
+										<td class="textLeft tdWidthPersen5">午前半休</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/sun.png" width="30" height="30" src="img/sun.png"></td>
+										<td class="textLeft tdWidthPersen5">体調不良のため</td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200824</td>
+										<td class="textLeft tdWidthPersen5">東仲里 夏帆里</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/sun.png" width="30" height="30" src="img/sun.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/cloud.png" width="30" height="30" src="img/cloud.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200825</td>
+										<td class="textLeft tdWidthPersen5">牛山 羽留奈</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/cloud.png" width="30" height="30" src="img/cloud.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="background-color1"></td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/sun.png" width="30" height="30" src="img/sun.png"></td>
+										<td class="textLeft tdWidthPersen5">午後半休</td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200826</td>
+										<td class="textLeft tdWidthPersen5">浮須 いろは</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">10:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/cloud.png" width="30" height="30" src="img/cloud.png"></td>
+										<td class="textLeft tdWidthPersen5">電車遅延のため</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/rain.png" width="30" height="30" src="img/rain.png"></td>
+										<td class="textLeft tdWidthPersen5">午後半休</td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200827</td>
+										<td class="textLeft tdWidthPersen5">今敷 越子</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/rain.png" width="30" height="30" src="img/rain.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/cloud.png" width="30" height="30" src="img/cloud.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200828</td>
+										<td class="textLeft tdWidthPersen5">飯橋 直太郎</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/sun.png" width="30" height="30" src="img/sun.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/hard_rain.png" width="30" height="30" src="img/hard_rain.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200829</td>
+										<td class="textLeft tdWidthPersen5">一田 みさ</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/rain.png" width="30" height="30" src="img/rain.png"></td>
+										<td class="textLeft tdWidthPersen5">電車遅延のため</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/hard_rain.png" width="30" height="30" src="img/hard_rain.png"></td>
+										<td class="textLeft tdWidthPersen5">午後半休</td>
+									</tr>
+									<tr>
+										<td class="textLeft tdWidthPersen5">200830</td>
+										<td class="textLeft tdWidthPersen5">幾間 遥</td>
+										<td class="textLeft tdWidthPersen5">09:00</td>
+										<td class="textLeft tdWidthPersen5">08:55</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/sun.png" width="30" height="30" src="img/sun.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textLeft tdWidthPersen5">19:00</td>
+										<td class="textCenter tdWidthPersen5"><img ng-src="img/hard_rain.png" width="30" height="30" src="img/hard_rain.png"></td>
+										<td class="textLeft tdWidthPersen5"></td>
+									</tr>
+								</tbody>
+							</table>
+					 	</div>
+				 	</div>
+				</div>
+					
+			</div>
+
+		</main>
+		<footer id="footer">
+		</footer>
+	</body>
+</html>
